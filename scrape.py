@@ -1,7 +1,9 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 options = Options()
 options.add_experimental_option("detach", True) # Keeps window open
@@ -25,7 +27,15 @@ if __name__ == "__main__":
     driver = webdriver.Chrome(options=options)
     driver.get(FOOTBALL_STATS_URL)
 
+    wait = WebDriverWait(driver, 2)
+
+    cookie_popup = wait.until(EC.presence_of_element_located(
+        (By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/button[3]'))
+    )
+
     # Click agree to cookies
-    driver.find_element("xpath", '/html/body/div[1]/div/div/div/div[2]/div/button[3]').click()
+    driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/button[3]').click()
 
     get_league_links(driver)
+
+    driver.quit()
