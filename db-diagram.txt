@@ -1,0 +1,45 @@
+
+Leagues
+-
+LeagueID PK int
+LeagueName string
+
+Tournaments
+-
+TournamentID PK int
+TournamentName string
+
+Teams
+-
+TeamID PK int
+LeagueID int FK >- Leagues.LeagueID
+TeamName PK string
+TournamentID int FK >- Tournaments.TournamentID
+
+LeagueTables
+-
+LeagueID PK int FK >- Leagues.LeagueID
+TeamID PK int FK >- Teams.TeamID
+TeamName string FK >- Teams.TeamName
+GamesPlayed int
+GamesWon int
+GamesDrawn int
+GamesLost int
+GoalsFor int
+GoalsAgainst int
+GoalDiff int
+Points int
+
+LeagueMatches
+-
+LeagueID PK int FK >- Leagues.LeagueID
+Team1ID PK int FK >- Teams.TeamID
+Team2ID PK int FK >- Teams.TeamID
+StartTime datetime
+
+TournamentMatches
+-
+TournamentID PK int FK >- Tournaments.TournamentID
+Team1ID PK int FK >- Teams.TeamID
+Team2ID PK int FK >- Teams.TeamID
+StartTime datetime
