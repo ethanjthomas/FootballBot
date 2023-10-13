@@ -7,10 +7,8 @@ host = secret.host
 password = secret.password
 user = secret.user
 
-"""
-    Establish a connetion to database
-"""
 def connect_to_db():
+    """Establish a connetion to database"""
     try:
         print('Connecting to MySQL database...')
         conn = MySQLConnection(host=host, password=password, user=user)
@@ -33,10 +31,9 @@ def connect_to_db():
             print(err)
             sys.exit(1)
 
-"""
-    print the result of the previous query
-"""
+
 def pres(curs):
+    """Print the result of the previous query"""
     res = curs.fetchall()
     for row in res:
         print(row)
