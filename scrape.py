@@ -13,6 +13,7 @@ FOOTBALL_STATS_URL = 'https://www.soccerstats.com/'
 
 
 def get_league_links(driver):
+    """Retrieves the links for the top 5 leagues from the home page"""
     leagues = ['Premier League', 'Serie A', 'La Liga', 'Ligue 1', 'Bundesliga']
     league_links = []
 
@@ -21,7 +22,9 @@ def get_league_links(driver):
         league_link = league_a_tag.get_attribute('href')
         league_links.append(league_link)
 
-        print(f"Got link for {league_name}: {league_links[num]}")
+        # print(f"Got link for {league_name}: {league_links[num]}")
+
+    return league_links
 
 if __name__ == "__main__":
     driver = webdriver.Chrome(options=options)
@@ -36,6 +39,6 @@ if __name__ == "__main__":
     # Click agree to cookies
     driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/button[3]').click()
 
-    get_league_links(driver)
+    league_links = get_league_links(driver)
 
     driver.quit()
